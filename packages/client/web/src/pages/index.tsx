@@ -1,12 +1,10 @@
-import Head from 'next/head'
 import React from 'react'
 
 const Home: React.FC = () => {
   return (
     <div>
-      <Head>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      hello world
+      <button>click me</button>
     </div>
   )
 }
