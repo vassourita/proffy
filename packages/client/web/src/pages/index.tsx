@@ -1,5 +1,7 @@
+import Link from 'next/link'
 import React from 'react'
 
+import { Container } from '../styles/global'
 import {
   PageLanding,
   ButtonsContainer,
@@ -8,9 +10,7 @@ import {
   LogoContainer,
   Study,
   TotalConnections
-} from 'src/styles/indexPage'
-
-import { Container } from '../styles/global'
+} from '../styles/pages/index/styles'
 
 const Home: React.FC = () => {
   return (
@@ -24,14 +24,18 @@ const Home: React.FC = () => {
         <HeroImage src="/images/landing.svg" alt="Plataforma de estudos" />
 
         <ButtonsContainer>
-          <Study>
-            <img src="/images/icons/study.svg" alt="Estudar" />
-            Estudar
-          </Study>
-          <GiveClasses>
-            <img src="/images/icons/give-classes.svg" alt="Dar aulas" />
-            Dar aulas
-          </GiveClasses>
+          <Link href="/study" passHref>
+            <Study>
+              <img src="/images/icons/study.svg" alt="Estudar" />
+              Estudar
+            </Study>
+          </Link>
+          <Link href="/give-classes" passHref>
+            <GiveClasses>
+              <img src="/images/icons/give-classes.svg" alt="Dar aulas" />
+              Dar aulas
+            </GiveClasses>
+          </Link>
         </ButtonsContainer>
 
         <TotalConnections>
