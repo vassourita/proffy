@@ -1,11 +1,13 @@
 import React from 'react'
 
+import { TeacherItem } from 'src/components/TeacherItem'
+
 import { PageHeader } from '../components/PageHeader'
 import {
   PageTeacherList,
   InputBlock,
   SearchTeachersForm
-} from '../styles/pages/study/styles'
+} from '../styles/pages/study'
 
 const TeacherList: React.FC = () => {
   return (
@@ -28,6 +30,15 @@ const TeacherList: React.FC = () => {
           </InputBlock>
         </SearchTeachersForm>
       </PageHeader>
+
+      <main>
+        <TeacherItem />
+        <TeacherItem />
+        <TeacherItem />
+        <TeacherItem />
+        <TeacherItem />
+        <TeacherItem />
+      </main>
     </PageTeacherList>
   )
 }

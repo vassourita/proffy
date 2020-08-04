@@ -1,12 +1,21 @@
 import styled from 'styled-components'
 
-import { Container } from '../../global'
+import { Container } from '../global'
 
 export const PageTeacherList = styled(Container)`
   width: 100vw;
   height: 100vh;
+  main {
+    margin: 3.2rem auto;
+    width: 90%;
+  }
   @media (min-width: 700px) {
     max-width: 100%;
+    main {
+      padding: 3.2rem 0;
+      max-width: 740px;
+      margin: 0 auto;
+    }
   }
 `
 

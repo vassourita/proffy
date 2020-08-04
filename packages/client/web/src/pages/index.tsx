@@ -10,7 +10,7 @@ import {
   LogoContainer,
   Study,
   TotalConnections
-} from '../styles/pages/index/styles'
+} from '../styles/pages/index'
 
 const Home: React.FC = () => {
   return (
@@ -39,7 +39,7 @@ const Home: React.FC = () => {
         </ButtonsContainer>
 
         <TotalConnections>
-          Total de 200 conexões
+          Total de 200 conexões já realizadas
           <img src="/images/icons/purple-heart.svg" alt="Coração Roxo" />
         </TotalConnections>
       </Container>

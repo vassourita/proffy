@@ -1,7 +1,11 @@
 import Link from 'next/link'
 import React from 'react'
 
-import { PageHeaderContainer, TopBarContainer, HeaderContent } from './styles'
+import {
+  PageHeaderContainer,
+  TopBarContainer,
+  HeaderContent
+} from '../styles/components/pageHeader'
 
 interface IPageHeaderProps {
   title: string
