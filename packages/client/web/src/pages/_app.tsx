@@ -2,7 +2,7 @@ import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import React from 'react'
 
-import { GlobalStyles } from 'src/assets/styles/global'
+import { GlobalStyles } from 'src/styles/global'
 
 const App: React.FC<AppProps> = ({ Component, pageProps }) => {
   return (
