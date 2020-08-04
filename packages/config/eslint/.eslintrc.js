@@ -28,6 +28,7 @@ module.exports = {
     'eslint-plugin-import-helpers'
   ],
   rules: {
+    'react/prop-types': 'off',
     'prettier/prettier': 'error',
     'space-before-function-paren': 'off',
     'no-useless-constructor': 'off',
@@ -43,7 +44,7 @@ module.exports = {
       {
         newlinesBetween: 'always',
         groups: [
-          ['/^nest/', '/^next/', '/^react/'],
+          ['/^nest/', '/^react/', '/^next/'],
           'module',
           ['/^@shared/', '/^@modules/', '/^@config/'],
           ['parent', 'sibling', 'index']

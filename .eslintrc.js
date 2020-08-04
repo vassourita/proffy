@@ -1,1 +1,1 @@
-module.exports = require('@ally-next/config-eslint')
+module.exports = require('@proffy/config-eslint')
