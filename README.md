@@ -25,6 +25,7 @@
 # :computer: Technologies
 This project was made using the follow technologies:
 - [Typescript](https://www.typescriptlang.org/)
+- [Docker](https://www.docker.com/)
 - [NextJS](https://nextjs.org/)
 - [Styled Components](https://styled-components.com/)
 - [ReactJS](https://reactjs.org/)
