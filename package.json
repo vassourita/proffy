@@ -1,0 +1,26 @@
+{
+  "name": "proffy",
+  "version": "1.0.0",
+  "author": "Vinicius Vassao <vlviniciusguaruja7@gmail.com>",
+  "repository": "https://github.com/vassourita/proffy.git",
+  "license": "MIT",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "test": "jest --passWithNoTests"
+  },
+  "workspaces": {
+    "packages": [
+      "packages/server/*",
+      "packages/client/*",
+      "packages/config/*"
+    ]
+  },
+  "devDependencies": {
+    "@proffy/config-eslint": "*",
+    "@types/jest": "^26.0.7",
+    "jest": "^26.1.0",
+    "ts-jest": "^26.1.3",
+    "typescript": "^3.9.7"
+  }
+}
