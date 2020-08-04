@@ -26,8 +26,10 @@
 This project was made using the follow technologies:
 - [Typescript](https://www.typescriptlang.org/)
 - [NextJS](https://nextjs.org/)
+- [Styled Components](https://styled-components.com/)
 - [ReactJS](https://reactjs.org/)
 - [React Native](https://reactnative.dev/)
 - [Expo](https://expo.io/)
 - [Express](https://expressjs.com/en/api.html#express)
+- [Jest](https://jestjs.io/)
 - [PostgreSQL](https://www.postgresql.org/)
