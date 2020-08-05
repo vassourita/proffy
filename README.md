@@ -22,6 +22,7 @@
 
 * [Layout](#pencil2-layout)
 * [Technologies](#computer-technologies)
+* [How To Run](#wrench-how-to-run)
 
 # :pencil2: Layout
 You can see the original layout by @tiagoluchtenberg for the application on Figma:
@@ -33,6 +34,35 @@ If you can't see the layouts by any reason, this should help:
 
 # :computer: Technologies
 This project was made using the follow technologies:
+- [Typescript](https://www.typescriptlang.org/)
+- [Docker](https://www.docker.com/)
+- [NextJS](https://nextjs.org/)
+- [Styled Components](https://styled-components.com/)
+- [ReactJS](https://reactjs.org/)
+- [React Native](https://reactnative.dev/)
+- [Expo](https://expo.io/)
+- [Express](https://expressjs.com/en/api.html#express)
+- [Jest](https://jestjs.io/)
+- [PostgreSQL](https://www.postgresql.org/)
+
+# :wrench: How To Run
+To run this app on your computer, run these commands inside the repository root folder
+```shell
+# open the backend, install dependencies, run docker:
+$ cd packages/server/api
+$ yarn
+$ cd ./docker
+$ docker-compose up -d
+# rename .env.example to .env and add your database credentials, then run migrations:
+$ yarn db:migrate
+# start the server
+$ yarn start:dev
+
+# open another shell again on the repository root folder, install dependencies then start the web server
+$ cd packages/client/web
+$ yarn
+$ yarn dev
+```
 - [Typescript](https://www.typescriptlang.org/)
 - [Docker](https://www.docker.com/)
 - [NextJS](https://nextjs.org/)
