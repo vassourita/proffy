@@ -27,6 +27,7 @@
 You can see the original layout by @tiagoluchtenberg for the application on Figma:
 - [Mobile Layout](https://www.figma.com/file/e33KvgUpFdunXxJjHnK7CG/?viewer=1&node-id=)
 - [Web Layout](https://www.figma.com/file/GHGS126t7WYjnPZdRKChJF/?viewer=1&node-id=)
+
 If you can't see the layouts by any reason, this should help:
 - [Other ways to see the layout](https://www.notion.so/Layout-Proffy-3d5f45f54ec54ef9b2103565b7cce4e1)
 
