@@ -5,6 +5,7 @@ interface KnexFileConfig {
   development?: Config
   production?: Config
   staging?: Config
+  test?: Config
 }
 
 const config: KnexFileConfig = {
@@ -16,6 +17,15 @@ const config: KnexFileConfig = {
       password: process.env.DB_PASS,
       host: process.env.DB_HOST
     },
+    migrations: {
+      tableName: 'knex_migrations',
+      directory: `${__dirname}/src/shared/infra/knex/migrations`
+    }
+  },
+  test: {
+    client: 'sqlite3',
+    connection: ':memory:',
+    useNullAsDefault: true,
     migrations: {
       tableName: 'knex_migrations',
       directory: `${__dirname}/src/shared/infra/knex/migrations`

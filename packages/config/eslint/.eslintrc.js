@@ -28,11 +28,12 @@ module.exports = {
     'eslint-plugin-import-helpers'
   ],
   rules: {
+    '@typescript-eslint/no-var-requires': 'off',
     'react/prop-types': 'off',
     'prettier/prettier': 'error',
     'space-before-function-paren': 'off',
     'no-useless-constructor': 'off',
-    'no-unused-vars': 'error',
+    'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': [
       'error',
       {
