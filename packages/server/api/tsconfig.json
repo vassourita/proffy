@@ -15,8 +15,9 @@
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
     "outDir": "./dist",
-    "rootDir": "./src",
+    "rootDir": "./",
     "baseUrl": "./",
+    "esModuleInterop": true,
     "strictPropertyInitialization": false,
     "typeRoots": [
       "./node_modules/@types",
