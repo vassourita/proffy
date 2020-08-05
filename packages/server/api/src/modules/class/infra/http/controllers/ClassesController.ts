@@ -1,6 +1,8 @@
 import { Response, Request } from 'express'
-import { injectable } from 'tsyringe'
+import { injectable, container } from 'tsyringe'
 
+import { FindAvailableTeachersUseCase } from '@modules/class/useCases/FindAvailableTeachers/FindAvailableTeachersUseCase'
+import { CountConnectionsUseCase } from '@modules/connection/useCases/CountConnections/CountConnectionsUseCase'
 import { IRestController } from '@shared/infra/http/protocols/IRestController'
 import { db } from '@shared/infra/knex/connection'
 import convertHourToMinutes from '@shared/utils/convertHourToMinutes'
@@ -14,38 +16,30 @@ interface ScheduleItem {
 @injectable()
 export class ClassesController implements IRestController {
   async index(req: Request, res: Response): Promise<Response> {
-    try {
-      const filters = req.query
+    const filters = req.query
 
-      const subject = filters.subject as string
-      const weekDay = filters.week_day as string
-      const time = filters.time as string
+    const subject = filters.subject as string
+    const weekDay = filters.week_day as string
+    const time = filters.time as string
 
-      if (!weekDay || !subject || !time) {
-        return res.status(400).json({
-          error: 'Missing filters to search classes'
-        })
-      }
-
-      const timeInMinutes = convertHourToMinutes(time)
-
-      const classes = await db('classes')
-        .where('classes.subject', '=', subject)
-        .whereExists(function () {
-          this.select('*')
-            .from('class_schedule')
-            .whereRaw('"class_schedule"."class_id" = "classes"."id"')
-            .whereRaw('"class_schedule"."week_day" = ??', [Number(weekDay)])
-            .whereRaw('"class_schedule"."from" <= ??', [timeInMinutes])
-            .whereRaw('"class_schedule"."to" > ??', [timeInMinutes])
-        })
-        .join('users', 'classes.user_id', '=', 'users.id')
-        .select(['classes.*', 'users.*'])
-
-      return res.json(classes)
-    } catch (error) {
-      console.log(error)
+    if (!weekDay || !subject || !time) {
+      return res.status(400).json({
+        error: 'Missing filters to search classes'
+      })
     }
+
+    const timeInMinutes = convertHourToMinutes(time)
+
+    const findAvailableTeachers = container.resolve(
+      FindAvailableTeachersUseCase
+    )
+    const classes = await findAvailableTeachers.execute({
+      hour: timeInMinutes,
+      subject,
+      weekDay: Number(weekDay)
+    })
+
+    return res.json(classes)
   }
 
   async store(req: Request, res: Response): Promise<Response> {

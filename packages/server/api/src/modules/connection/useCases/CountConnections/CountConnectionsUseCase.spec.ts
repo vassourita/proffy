@@ -1,6 +1,6 @@
 import 'dotenv/config'
 import 'reflect-metadata'
-import { KnexConnectionRepository } from '@modules/connection/infra/knex/repositories/KnexConnectionRepository'
+import { KnexConnectionRepository } from '@modules/connection/infra/knex/repositories/ConnectionRepository/KnexConnectionRepository'
 import { db } from '@shared/infra/knex/connection'
 
 import { CountConnectionsUseCase } from './CountConnectionsUseCase'
