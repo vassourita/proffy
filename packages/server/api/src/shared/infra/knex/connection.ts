@@ -22,6 +22,4 @@ const config: KnexFileConfig = {
   }
 }
 
-const db = knex(config[process.env.NODE_ENV || 'development'])
-
-export default db
+export const db = knex(config[process.env.NODE_ENV || 'development'])
