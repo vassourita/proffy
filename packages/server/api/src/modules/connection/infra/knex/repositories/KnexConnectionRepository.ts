@@ -18,7 +18,7 @@ export class KnexConnectionRepository implements IConnectionRepository {
     return Number(total)
   }
 
-  async create(userId: string): Promise<void> {
+  async create(userId: number): Promise<void> {
     await this.knex('connections').insert({
       user_id: userId
     })

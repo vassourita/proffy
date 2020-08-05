@@ -1,4 +1,4 @@
 export interface IConnectionRepository {
   count(): Promise<number>
-  create(userId: string): Promise<void>
+  create(userId: number): Promise<void>
 }
