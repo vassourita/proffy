@@ -2,7 +2,7 @@ import { Response, Request } from 'express'
 import { injectable } from 'tsyringe'
 
 import { IRestController } from '@shared/infra/http/protocols/IRestController'
-import db from '@shared/infra/knex/connection'
+import { db } from '@shared/infra/knex/connection'
 import convertHourToMinutes from '@shared/utils/convertHourToMinutes'
 
 interface ScheduleItem {
