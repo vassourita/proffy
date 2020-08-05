@@ -1,7 +1,9 @@
 import { Response, Request } from 'express'
+import { injectable } from 'tsyringe'
 
-import db from '../database/connection'
-import convertHourToMinutes from '../utils/convertHourToMinutes'
+import { IRestController } from '@shared/infra/http/protocols/IRestController'
+import db from '@shared/infra/knex/connection'
+import convertHourToMinutes from '@shared/utils/convertHourToMinutes'
 
 interface ScheduleItem {
   weekDay: number
@@ -9,7 +11,8 @@ interface ScheduleItem {
   to: string
 }
 
-export default class ClassesController {
+@injectable()
+export class ClassesController implements IRestController {
   async index(req: Request, res: Response): Promise<Response> {
     try {
       const filters = req.query
@@ -45,7 +48,7 @@ export default class ClassesController {
     }
   }
 
-  async create(req: Request, res: Response): Promise<Response> {
+  async store(req: Request, res: Response): Promise<Response> {
     const { name, avatar, whatsapp, bio, subject, cost, schedule } = req.body
 
     const trx = await db.transaction()

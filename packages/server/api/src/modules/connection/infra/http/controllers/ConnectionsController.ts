@@ -1,8 +1,11 @@
 import { Request, Response } from 'express'
+import { injectable } from 'tsyringe'
 
-import db from '../database/connection'
+import { IRestController } from '@shared/infra/http/protocols/IRestController'
+import db from '@shared/infra/knex/connection'
 
-export default class ConnectionsController {
+@injectable()
+export class ConnectionsController implements IRestController {
   async index(req: Request, res: Response): Promise<Response> {
     const totalConnections = await db('connections').count('* as total')
 
@@ -11,7 +14,7 @@ export default class ConnectionsController {
     return res.json({ total })
   }
 
-  async create(req: Request, res: Response): Promise<Response> {
+  async store(req: Request, res: Response): Promise<Response> {
     const { userId } = req.body
 
     await db('connections').insert({
