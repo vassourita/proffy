@@ -1,15 +1,15 @@
 import { Request, Response } from 'express'
-import { injectable } from 'tsyringe'
+import { injectable, container } from 'tsyringe'
 
+import { CountConnectionsUseCase } from '@modules/connection/useCases/CountConnections/CountConnectionsUseCase'
+import { CreateConnectionsUseCase } from '@modules/connection/useCases/CreateConnections/CreateConnectionsUseCase'
 import { IRestController } from '@shared/infra/http/protocols/IRestController'
-import db from '@shared/infra/knex/connection'
 
 @injectable()
 export class ConnectionsController implements IRestController {
   async index(req: Request, res: Response): Promise<Response> {
-    const totalConnections = await db('connections').count('* as total')
-
-    const { total } = totalConnections[0]
+    const countConnections = container.resolve(CountConnectionsUseCase)
+    const total = await countConnections.execute()
 
     return res.json({ total })
   }
@@ -17,9 +17,8 @@ export class ConnectionsController implements IRestController {
   async store(req: Request, res: Response): Promise<Response> {
     const { userId } = req.body
 
-    await db('connections').insert({
-      user_id: userId
-    })
+    const createConnection = container.resolve(CreateConnectionsUseCase)
+    await createConnection.execute(userId)
 
     return res.status(201).send()
   }
