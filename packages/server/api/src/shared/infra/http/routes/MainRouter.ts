@@ -1,26 +1,24 @@
 import express from 'express'
-import { inject } from 'tsyringe'
+import { inject, injectable } from 'tsyringe'
 
-import { ClassesController } from '@modules/class/infra/http/controllers/ClassesController'
-import { ConnectionsController } from '@modules/connection/infra/http/controllers/ConnectionsController'
+import { ClassesRouter } from '@modules/class/infra/http/routes/ClassesRouter'
+import { ConnectionsRouter } from '@modules/connection/infra/http/routes/ConnectionsRouter'
 
 import { IRouter } from '../protocols/IRouter'
 
+@injectable()
 export class MainRouter implements IRouter {
   public routes: express.Router
 
   constructor(
-    @inject('ClassesController')
-    private readonly classesController: ClassesController,
-    @inject('ConnectionsController')
-    private readonly connectionsController: ConnectionsController
+    @inject('ClassesRouter')
+    private readonly classesRouter: ClassesRouter,
+    @inject('ConnectionsRouter')
+    private readonly connectionsRouter: ConnectionsRouter
   ) {
     this.routes = express.Router()
 
-    this.routes.get('/classes', classesController.index)
-    this.routes.post('/classes', classesController.store)
-
-    this.routes.get('/connections', connectionsController.index)
-    this.routes.post('/connections', connectionsController.store)
+    this.routes.use('/classes', classesRouter.routes)
+    this.routes.use('/connections', connectionsRouter.routes)
   }
 }
