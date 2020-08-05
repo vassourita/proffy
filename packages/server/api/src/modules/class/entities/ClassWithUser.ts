@@ -1,9 +1,9 @@
 export class ClassWithUser {
   id: number
   subject: string
-  cost: string
+  cost: number
 
-  userId: string
+  userId: number
   name: string
   avatar: string
   whatsapp: string
