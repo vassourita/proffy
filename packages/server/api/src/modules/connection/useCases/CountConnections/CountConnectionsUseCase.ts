@@ -1,9 +1,9 @@
 import { inject } from 'tsyringe'
 
 import { IConnectionRepository } from '@modules/connection/repositories/IConnectionRepository'
-import { UseCase } from '@shared/protocols/UseCase'
+import { IUseCase } from '@shared/protocols/IUseCase'
 
-export class CountConnectionsUseCase implements UseCase {
+export class CountConnectionsUseCase implements IUseCase {
   constructor(
     @inject('ConnectionRepository')
     private readonly connectionRepository: IConnectionRepository

@@ -1,9 +1,17 @@
+import Knex from 'knex'
+
 import { IConnectionRepository } from '@modules/connection/repositories/IConnectionRepository'
 import { db } from '@shared/infra/knex/connection'
 
 export class KnexConnectionRepository implements IConnectionRepository {
+  private readonly knex: Knex
+
+  constructor(knex = db) {
+    this.knex = knex
+  }
+
   async count(): Promise<number> {
-    const totalConnections = await db('connections').count('* as total')
+    const totalConnections = await this.knex('connections').count('* as total')
 
     const { total } = totalConnections[0]
 
@@ -11,7 +19,7 @@ export class KnexConnectionRepository implements IConnectionRepository {
   }
 
   async create(userId: string): Promise<void> {
-    await db('connections').insert({
+    await this.knex('connections').insert({
       user_id: userId
     })
   }
