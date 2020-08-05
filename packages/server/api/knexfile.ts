@@ -18,7 +18,7 @@ const config: KnexFileConfig = {
     },
     migrations: {
       tableName: 'knex_migrations',
-      directory: `${__dirname}/src/database/migrations`
+      directory: `${__dirname}/src/shared/infra/knex/migrations`
     }
   }
 }
