@@ -1,40 +1,26 @@
 import 'dotenv/config'
 import 'reflect-metadata'
-import { KnexConnectionRepository } from '@modules/connection/infra/knex/repositories/ConnectionRepository/KnexConnectionRepository'
-import { db } from '@shared/infra/knex/connection'
+import { FakeConnectionRepository } from '@modules/connection/repositories/ConnectionRepository/FakeConnectionRepository'
 
-import { CountConnectionsUseCase } from '../CountConnections/CountConnectionsUseCase'
 import { CreateConnectionsUseCase } from './CreateConnectionsUseCase'
 
 describe('CreateConnectionsUseCase', () => {
-  const createConnections = new CreateConnectionsUseCase(
-    new KnexConnectionRepository(db)
-  )
-  const countConnections = new CountConnectionsUseCase(
-    new KnexConnectionRepository(db)
-  )
-
-  beforeAll(async () => {
-    await db.migrate.latest()
-  })
-
-  afterAll(async () => {
-    await db('connections').delete()
-  })
+  const repo = new FakeConnectionRepository()
+  const createConnections = new CreateConnectionsUseCase(repo)
 
   it('should create new connections', async () => {
-    let count = await countConnections.execute()
-
-    expect(count).toEqual(0)
-
     await createConnections.execute(1)
-    count = await countConnections.execute()
+    await createConnections.execute(3)
 
-    expect(count).toEqual(1)
-
-    await createConnections.execute(1)
-    count = await countConnections.execute()
-
-    expect(count).toEqual(2)
+    expect(repo.connections).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          userId: 1
+        }),
+        expect.objectContaining({
+          userId: 3
+        })
+      ])
+    )
   })
 })

@@ -7,7 +7,7 @@ import { IClassRepository } from '@modules/class/repositories/ClassRepository/IC
 import { IScheduleRepository } from '@modules/class/repositories/ScheduleRepository/IScheduleRepository'
 import { IUserRepository } from '@modules/class/repositories/UserRepository/IUserRepository'
 import { KnexConnectionRepository } from '@modules/connection/infra/knex/repositories/ConnectionRepository/KnexConnectionRepository'
-import { IConnectionRepository } from '@modules/connection/repositories/IConnectionRepository'
+import { IConnectionRepository } from '@modules/connection/repositories/ConnectionRepository/IConnectionRepository'
 
 container.registerSingleton<IConnectionRepository>(
   'ConnectionRepository',

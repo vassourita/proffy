@@ -1,6 +1,6 @@
 import { inject, injectable } from 'tsyringe'
 
-import { IConnectionRepository } from '@modules/connection/repositories/IConnectionRepository'
+import { IConnectionRepository } from '@modules/connection/repositories/ConnectionRepository/IConnectionRepository'
 import { IUseCase } from '@shared/protocols/IUseCase'
 
 @injectable()

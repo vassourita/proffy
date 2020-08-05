@@ -2,7 +2,6 @@ import { Response, Request } from 'express'
 import { injectable, container } from 'tsyringe'
 
 import { FindAvailableTeachersUseCase } from '@modules/class/useCases/FindAvailableTeachers/FindAvailableTeachersUseCase'
-import { CountConnectionsUseCase } from '@modules/connection/useCases/CountConnections/CountConnectionsUseCase'
 import { IRestController } from '@shared/infra/http/protocols/IRestController'
 import { db } from '@shared/infra/knex/connection'
 import convertHourToMinutes from '@shared/utils/convertHourToMinutes'

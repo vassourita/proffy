@@ -1,6 +1,6 @@
 import Knex from 'knex'
 
-import { IConnectionRepository } from '@modules/connection/repositories/IConnectionRepository'
+import { IConnectionRepository } from '@modules/connection/repositories/ConnectionRepository/IConnectionRepository'
 import { db } from '@shared/infra/knex/connection'
 
 export class KnexConnectionRepository implements IConnectionRepository {
