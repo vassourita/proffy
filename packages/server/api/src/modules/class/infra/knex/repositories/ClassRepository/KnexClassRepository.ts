@@ -39,11 +39,13 @@ export class KnexClassRepository implements IClassRepository {
   }
 
   async create(data: ICreateClassDTO): Promise<number> {
-    const ids = await this.knex('classes').insert({
-      subject: data.subject,
-      cost: data.cost,
-      user_id: data.userId
-    })
+    const ids = await this.knex('classes')
+      .insert({
+        subject: data.subject,
+        cost: data.cost,
+        user_id: data.userId
+      })
+      .returning('id')
     return ids[0]
   }
 }

@@ -6,12 +6,6 @@ import { FindAvailableTeachersUseCase } from '@modules/class/useCases/FindAvaila
 import { IRestController } from '@shared/infra/http/protocols/IRestController'
 import convertHourToMinutes from '@shared/utils/convertHourToMinutes'
 
-interface ScheduleItem {
-  weekDay: number
-  from: string
-  to: string
-}
-
 @injectable()
 export class ClassesController implements IRestController {
   async index(req: Request, res: Response): Promise<Response> {
@@ -58,7 +52,11 @@ export class ClassesController implements IRestController {
         cost,
         subject
       },
-      schedule
+      schedule: schedule.map(scheduleItem => ({
+        weekDay: scheduleItem.weekDay,
+        from: convertHourToMinutes(scheduleItem.from),
+        to: convertHourToMinutes(scheduleItem.to)
+      }))
     })
     return res.status(201).send()
   }

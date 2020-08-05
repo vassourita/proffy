@@ -19,7 +19,9 @@ export class KnexScheduleRepository implements IScheduleRepository {
       to: scheduleItem.to
     }))
 
-    const ids = await this.knex('class_schedule').insert(classSchedule)
+    const ids = await this.knex('class_schedule')
+      .insert(classSchedule)
+      .returning('id')
 
     return ids
   }

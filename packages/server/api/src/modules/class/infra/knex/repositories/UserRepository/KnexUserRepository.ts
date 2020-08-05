@@ -1,6 +1,6 @@
 import Knex from 'knex'
 
-import { ICreateUserDTO } from '@modules/class/repositories/UserRepository/ICreateClassDTO'
+import { ICreateUserDTO } from '@modules/class/repositories/UserRepository/ICreateUserDTO'
 import { IUserRepository } from '@modules/class/repositories/UserRepository/IUserRepository'
 import { db } from '@shared/infra/knex/connection'
 
@@ -17,12 +17,14 @@ export class KnexUserRepository implements IUserRepository {
     name,
     whatsapp
   }: ICreateUserDTO): Promise<number> {
-    const ids = await this.knex('users').insert({
-      name,
-      avatar,
-      whatsapp,
-      bio
-    })
+    const ids = await this.knex('users')
+      .insert({
+        name,
+        avatar,
+        whatsapp,
+        bio
+      })
+      .returning('id')
     return ids[0]
   }
 }
