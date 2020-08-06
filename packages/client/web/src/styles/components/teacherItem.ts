@@ -48,7 +48,7 @@ export const TeacherItemContainer = styled.article`
       font-size: 1.6rem;
       display: block;
     }
-    button {
+    a {
       width: 20rem;
       height: 5.6rem;
       background: var(--color-secundary);
@@ -79,7 +79,7 @@ export const TeacherItemContainer = styled.article`
       display: initial;
       margin-left: 1.6rem;
     }
-    footer button {
+    footer a {
       width: 24.5rem;
       font-size: 1.6rem;
       justify-content: center;

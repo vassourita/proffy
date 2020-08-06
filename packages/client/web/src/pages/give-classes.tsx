@@ -58,11 +58,11 @@ const TeacherForm: React.FC = () => {
         schedule: scheduleItems
       })
       .then(() => {
-        alert('All done!')
+        alert('Cadastro realizado!')
         router.push('/')
       })
       .catch(() => {
-        alert('Error')
+        alert('Erro no cadastro')
       })
   }
 

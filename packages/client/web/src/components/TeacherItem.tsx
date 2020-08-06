@@ -1,33 +1,55 @@
 import React from 'react'
 
+import api from 'src/services/api'
+
 import { TeacherItemContainer } from '../styles/components/teacherItem'
 
-export const TeacherItem: React.FC = () => (
-  <TeacherItemContainer>
-    <header>
-      <img src="https://avatars1.githubusercontent.com/u/55103535?s=460&u=c48a07e29847f8a67fa91bd1526199b6bc0c8c25&v=4" />
-      <div>
-        <strong>Diego Fernandes</strong>
-        <span>Química</span>
-      </div>
-    </header>
+export interface Teacher {
+  id: number
+  avatar: string
+  bio: string
+  cost: number
+  name: string
+  subject: string
+  whatsapp: number
+}
 
-    <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor itaque
-      ducimus amet fugiat error suscipit molestias. Quisquam cupiditate
-      accusantium culpa a doloremque iusto quis, illo exercitationem asperiores
-      dolor sunt eos?
-    </p>
+interface TeacherItemProps {
+  teacher: Teacher
+}
 
-    <footer>
-      <p>
-        Preço/hora
-        <strong>R$ 80,00</strong>
-      </p>
-      <button type="button">
-        <img src="/images/icons/whatsapp.svg" alt="Whatsapp" />
-        Entrar em contato
-      </button>
-    </footer>
-  </TeacherItemContainer>
-)
+export const TeacherItem: React.FC<TeacherItemProps> = ({ teacher }) => {
+  function createNewConnection() {
+    api.post('/connections', {
+      userId: teacher.id
+    })
+  }
+  return (
+    <TeacherItemContainer>
+      <header>
+        <img src={teacher.avatar} alt={teacher.name} />
+        <div>
+          <strong>{teacher.name}</strong>
+          <span>{teacher.subject}</span>
+        </div>
+      </header>
+      <p>{teacher.bio}</p>
+
+      <footer>
+        <p>
+          Preço/hora
+          <strong>{teacher.cost}</strong>
+        </p>
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={createNewConnection}
+          href={`https://wa.me/${teacher.whatsapp}?text=Olá`}
+        >
+          <img src="/images/icons/whatsapp.svg" alt="Whatsapp" />
+          Entrar em contato
+        </a>
+      </footer>
+    </TeacherItemContainer>
+  )
+}

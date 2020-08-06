@@ -1,13 +1,40 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
 import Input from 'src/components/Input'
 import Select from 'src/components/Select'
-import { TeacherItem } from 'src/components/TeacherItem'
+import { TeacherItem, Teacher } from 'src/components/TeacherItem'
+import api from 'src/services/api'
 
 import { PageHeader } from '../components/PageHeader'
 import { PageTeacherList, SearchTeachersForm } from '../styles/pages/study'
 
 const TeacherList: React.FC = () => {
+  const [teachers, setTeachers] = useState([])
+
+  const [subject, setSubject] = useState('')
+  const [weekDay, setWeekDay] = useState('')
+  const [time, setTime] = useState('')
+
+  async function searchTeachers() {
+    try {
+      const response = await api.get('classes', {
+        params: {
+          subject,
+          week_day: weekDay,
+          time
+        }
+      })
+
+      setTeachers(response.data)
+    } catch (error) {}
+  }
+
+  useEffect(() => {
+    if (subject && weekDay && time) {
+      searchTeachers()
+    }
+  }, [subject, weekDay, time])
+
   return (
     <PageTeacherList>
       <PageHeader title="Estes são os proffys disponíveis.">
@@ -27,6 +54,10 @@ const TeacherList: React.FC = () => {
             ]}
             name="subject"
             label="Matéria"
+            value={subject}
+            onChange={e => {
+              setSubject(e.target.value)
+            }}
           />
 
           <Select
@@ -41,18 +72,27 @@ const TeacherList: React.FC = () => {
             ]}
             name="week-day"
             label="Dia da semana"
+            value={weekDay}
+            onChange={e => {
+              setWeekDay(e.target.value)
+            }}
           />
-          <Input type="time" name="hour" label="Hora" />
+          <Input
+            type="time"
+            name="hour"
+            label="Hora"
+            value={time}
+            onChange={e => {
+              setTime(e.target.value)
+            }}
+          />
         </SearchTeachersForm>
       </PageHeader>
 
       <main>
-        <TeacherItem />
-        <TeacherItem />
-        <TeacherItem />
-        <TeacherItem />
-        <TeacherItem />
-        <TeacherItem />
+        {teachers.map((teacher: Teacher) => {
+          return <TeacherItem key={teacher.id} teacher={teacher} />
+        })}
       </main>
     </PageTeacherList>
   )
