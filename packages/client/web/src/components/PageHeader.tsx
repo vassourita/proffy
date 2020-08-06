@@ -9,10 +9,15 @@ import {
 
 interface IPageHeaderProps {
   title: string
+  description?: string
 }
 
-export const PageHeader: React.FC<IPageHeaderProps> = ({ title, children }) => (
-  <PageHeaderContainer>
+export const PageHeader: React.FC<IPageHeaderProps> = ({
+  title,
+  description,
+  children
+}) => (
+  <PageHeaderContainer className="page-header">
     <TopBarContainer>
       <Link href="/" passHref>
         <a>
@@ -23,8 +28,9 @@ export const PageHeader: React.FC<IPageHeaderProps> = ({ title, children }) => (
       <img src="/images/logo.svg" alt="Voltar" />
     </TopBarContainer>
 
-    <HeaderContent>
+    <HeaderContent className="header-content">
       <strong>{title}</strong>
+      {description && <p>{description}</p>}
       {children}
     </HeaderContent>
   </PageHeaderContainer>

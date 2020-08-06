@@ -1,5 +1,7 @@
 import Link from 'next/link'
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+
+import api from 'src/services/api'
 
 import { Container } from '../styles/global'
 import {
@@ -13,6 +15,14 @@ import {
 } from '../styles/pages/index'
 
 const Home: React.FC = () => {
+  const [totalConnections, setTotalConnections] = useState()
+
+  useEffect(() => {
+    api.get('/connections').then(response => {
+      setTotalConnections(response.data.total)
+    })
+  }, [])
+
   return (
     <PageLanding>
       <Container id="page-landing-content">
@@ -39,7 +49,7 @@ const Home: React.FC = () => {
         </ButtonsContainer>
 
         <TotalConnections>
-          Total de 200 conexões já realizadas
+          Total de {totalConnections} conexões já realizadas
           <img src="/images/icons/purple-heart.svg" alt="Coração Roxo" />
         </TotalConnections>
       </Container>
