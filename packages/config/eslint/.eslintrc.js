@@ -3,7 +3,8 @@ module.exports = {
     browser: true,
     es2020: true,
     node: true,
-    jest: true
+    jest: true,
+
   },
   extends: [
     'plugin:react/recommended',
@@ -30,6 +31,7 @@ module.exports = {
   rules: {
     '@typescript-eslint/no-var-requires': 'off',
     'react/prop-types': 'off',
+    'react/display-name': 'off',
     'prettier/prettier': 'error',
     'space-before-function-paren': 'off',
     'no-useless-constructor': 'off',
