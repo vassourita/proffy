@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import { useRouter } from 'next/dist/client/router'
+import React, { useState, FormEvent, ChangeEvent } from 'react'
 
 import Input from 'src/components/Input'
 import Select from 'src/components/Select'
@@ -20,6 +21,8 @@ const TeacherForm: React.FC = () => {
   const [scheduleItems, setScheduleItems] = useState([
     { weekDay: 0, from: '', to: '' }
   ])
+
+  const router = useRouter()
 
   function addNewScheduleItem() {
     setScheduleItems([...scheduleItems, { weekDay: 0, from: '', to: '' }])
@@ -45,7 +48,7 @@ const TeacherForm: React.FC = () => {
     e.preventDefault()
 
     api
-      .post('classes', {
+      .post('/classes', {
         name,
         avatar,
         whatsapp,
@@ -56,7 +59,7 @@ const TeacherForm: React.FC = () => {
       })
       .then(() => {
         alert('All done!')
-        history.push('/')
+        router.push('/')
       })
       .catch(() => {
         alert('Error')
@@ -75,25 +78,33 @@ const TeacherForm: React.FC = () => {
           <legend>Seus dados</legend>
           <Input
             value={name}
-            onChange={e => setName(e.target.value)}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setName(e.target.value)
+            }
             name="name"
             label="Nome completo"
           />
           <Input
             value={avatar}
-            onChange={e => setAvatar(e.target.value)}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setAvatar(e.target.value)
+            }
             name="avatar"
             label="Avatar"
           />
           <Input
             value={whatsapp}
-            onChange={e => setWhatsapp(e.target.value)}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setWhatsapp(e.target.value)
+            }
             name="whatsapp"
             label="Whatsapp"
           />
           <Textarea
             value={bio}
-            onChange={e => setBio(e.target.value)}
+            onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
+              setBio(e.target.value)
+            }
             name="bio"
             label="Biografia"
           />
@@ -103,7 +114,7 @@ const TeacherForm: React.FC = () => {
           <legend>Sobre a aula</legend>
           <Select
             value={subject}
-            onChange={e => {
+            onChange={(e: ChangeEvent<HTMLSelectElement>) => {
               setSubject(e.target.value)
             }}
             options={[
@@ -124,7 +135,7 @@ const TeacherForm: React.FC = () => {
           <Input
             name="cost"
             value={cost}
-            onChange={e => {
+            onChange={(e: ChangeEvent<HTMLInputElement>) => {
               setCost(e.target.value)
             }}
             label="Custo da sua hora pro aula"
@@ -151,7 +162,7 @@ const TeacherForm: React.FC = () => {
                   { value: '5', label: 'Sexta-feira' },
                   { value: '6', label: 'Sábado' }
                 ]}
-                onChange={e =>
+                onChange={(e: ChangeEvent<HTMLSelectElement>) =>
                   setScheduleItemValue(index, 'weekDay', e.target.value)
                 }
                 value={scheduleItem.weekDay}
@@ -161,7 +172,7 @@ const TeacherForm: React.FC = () => {
               <Input
                 name="from"
                 type="time"
-                onChange={e =>
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
                   setScheduleItemValue(index, 'from', e.target.value)
                 }
                 value={scheduleItem.from}
@@ -170,7 +181,7 @@ const TeacherForm: React.FC = () => {
               <Input
                 name="to"
                 type="time"
-                onChange={e =>
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
                   setScheduleItemValue(index, 'to', e.target.value)
                 }
                 value={scheduleItem.to}
