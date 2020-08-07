@@ -1,49 +1,47 @@
-import { StyleSheet } from 'react-native'
+import { ImageBackground } from 'react-native'
+import { RectButton } from 'react-native-gesture-handler'
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#8257E5',
-    justifyContent: 'center',
-    padding: 40
-  },
+import styled from 'styled-components/native'
 
-  content: {
-    flex: 1,
-    justifyContent: 'center'
-  },
+export const Container = styled.View`
+  flex: 1;
+  background: #8257e5;
+  justify-content: center;
+  padding: 40px;
+`
 
-  title: {
-    fontFamily: 'Archivo_700Bold',
-    color: '#FFF',
-    fontSize: 32,
-    lineHeight: 37,
-    maxWidth: 180
-  },
+export const Background = styled(ImageBackground)`
+  flex: 1;
+  justify-content: center;
+`
 
-  description: {
-    marginTop: 24,
-    color: '#d4c2ff',
-    fontSize: 16,
-    lineHeight: 26,
-    fontFamily: 'Poppins_400Regular',
-    maxWidth: 240
-  },
+export const Title = styled.Text`
+  font-family: 'Archivo_700Bold';
+  color: #fff;
+  line-height: 37px;
+  max-width: 180px;
+`
 
-  okButton: {
-    marginVertical: 40,
-    backgroundColor: '#04d361',
-    height: 58,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 8
-  },
+export const Description = styled.Text`
+  margin-top: 24px;
+  color: #d4c2ff;
+  font-size: 16px;
+  line-height: 26px;
+  font-family: 'Poppins_400Regular';
+  max-width: 250px;
+`
 
-  okButtonText: {
-    color: '#FFF',
-    fontSize: 16,
-    fontFamily: 'Archivo_700Bold'
-  }
-})
+export const Button = styled(RectButton)`
+  margin: 40px 0;
+  background: #04d361;
+  height: 58px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+`
 
-export default styles
+export const ButtonDescription = styled.Text`
+  color: #fff;
+  font-size: 16px;
+  font-family: 'Archivo_700Bold';
+`

@@ -1,25 +1,31 @@
-import { StyleSheet } from 'react-native'
+import { BorderlessButton } from 'react-native-gesture-handler'
 
-const styles = StyleSheet.create({
-  container: {
-    padding: 40,
-    backgroundColor: '#8257e5'
-  },
+import styled from 'styled-components/native'
 
-  topBar: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between'
-  },
+export const Container = styled.View`
+  padding: 40px;
+  background: #8257e5;
+`
 
-  title: {
-    fontFamily: 'Archivo_700Bold',
-    color: '#FFF',
-    fontSize: 24,
-    lineHeight: 32,
-    maxWidth: 160,
-    marginVertical: 40
-  }
-})
+export const TopBar = styled.View`
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+`
 
-export default styles
+export const Button = styled(BorderlessButton)``
+
+export const Title = styled.Text`
+  font-family: 'Archivo_700Bold';
+  color: #fff;
+  font-size: 24px;
+  line-height: 32px;
+  max-width: 180px;
+  margin: 40px 0;
+`
+
+export const Header = styled.View`
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+`

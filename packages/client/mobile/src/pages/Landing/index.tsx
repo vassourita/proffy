@@ -1,6 +1,5 @@
-import React from 'react'
-import { View, Image, Text } from 'react-native'
-import { RectButton } from 'react-native-gesture-handler'
+import React, { useCallback, useEffect, useState } from 'react'
+import { Image } from 'react-native'
 
 import { useNavigation } from '@react-navigation/native'
 
@@ -8,52 +7,66 @@ import giveClassesIcon from '../../assets/images/icons/give-classes.png'
 import heartIcon from '../../assets/images/icons/heart.png'
 import studyIcon from '../../assets/images/icons/study.png'
 import landingImg from '../../assets/images/landing.png'
-import styles from './styles'
+import api from '../../services/api'
+import {
+  Container,
+  Banner,
+  Title,
+  TitleBold,
+  ButtonsContainer,
+  ButtonStudy,
+  TextButton,
+  ButtonTeacher,
+  TotalConnections
+} from './styles'
 
 const Landing: React.FC = () => {
-  const { navigate } = useNavigation()
+  const navigation = useNavigation()
 
-  function handleNavigateToGiveClassesPage() {
-    navigate('GiveClasses')
-  }
+  const [totalConnection, setTotalConnections] = useState(0)
 
-  function handleNavigateToStudyPages() {
-    navigate('Study')
-  }
+  useEffect(() => {
+    api.get('/connections').then(response => {
+      setTotalConnections(response.data.total)
+    })
+  }, [])
+
+  const handleNativeToGiveClassesPage = useCallback(() => {
+    navigation.navigate('GiveClasses')
+  }, [navigation])
+
+  const handleNavigateToStudyPage = useCallback(() => {
+    navigation.navigate('Study')
+  }, [navigation])
 
   return (
-    <View style={styles.container}>
-      <Image source={landingImg} style={styles.banner} />
+    <Container>
+      <Banner source={landingImg} resizeMode="contain" />
 
-      <Text style={styles.title}>
-        Seja bem-vindo, {'\n'}
-        <Text style={styles.titleBold}>O que deseja fazer?</Text>
-      </Text>
+      <Title>
+        Seja bem-vindo,
+        {'\n'}
+        <TitleBold>O que deseja fazer ?</TitleBold>
+      </Title>
 
-      <View style={styles.buttonsContainer}>
-        <RectButton
-          onPress={handleNavigateToStudyPages}
-          style={[styles.button, styles.buttonPrimary]}
-        >
+      <ButtonsContainer>
+        <ButtonStudy onPress={handleNavigateToStudyPage}>
           <Image source={studyIcon} />
+          <TextButton>Estudar</TextButton>
+        </ButtonStudy>
 
-          <Text style={styles.buttonText}>Estudar</Text>
-        </RectButton>
-
-        <RectButton
-          onPress={handleNavigateToGiveClassesPage}
-          style={[styles.button, styles.buttonSecondary]}
-        >
+        <ButtonTeacher onPress={handleNativeToGiveClassesPage}>
           <Image source={giveClassesIcon} />
+          <TextButton>Dar aula</TextButton>
+        </ButtonTeacher>
+      </ButtonsContainer>
 
-          <Text style={styles.buttonText}>Dar aulas</Text>
-        </RectButton>
-      </View>
-
-      <Text style={styles.totalConnections}>
-        Total de 285 conexões já realizadas <Image source={heartIcon} />
-      </Text>
-    </View>
+      <TotalConnections>
+        {`Total de ${totalConnection} conexão já realizadas`}
+        {'  '}
+        <Image source={heartIcon} />
+      </TotalConnections>
+    </Container>
   )
 }
 

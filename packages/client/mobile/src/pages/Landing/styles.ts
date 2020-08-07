@@ -1,67 +1,64 @@
-import { StyleSheet } from 'react-native'
+import { RectButton } from 'react-native-gesture-handler'
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#8257E5',
-    justifyContent: 'center',
-    padding: 40
-  },
+import styled from 'styled-components/native'
 
-  banner: {
-    width: '100%',
-    resizeMode: 'contain'
-  },
+export const Container = styled.View`
+  flex: 1;
+  background: #8257e5;
+  justify-content: center;
+  padding: 40px;
+`
+export const Banner = styled.Image`
+  width: 100%;
+`
 
-  title: {
-    fontFamily: 'Poppins_400Regular',
-    color: '#FFF',
-    fontSize: 20,
-    lineHeight: 30,
-    marginTop: 80
-  },
+export const Title = styled.Text`
+  font-family: 'Poppins_400Regular';
+  color: #fff;
+  font-size: 20px;
+  line-height: 30px;
+  margin-top: 80px;
+`
 
-  titleBold: {
-    fontFamily: 'Poppins_600SemiBold'
-  },
+export const TitleBold = styled.Text`
+  font-family: 'Poppins_600SemiBold';
+`
 
-  buttonsContainer: {
-    flexDirection: 'row',
-    marginTop: 40,
-    justifyContent: 'space-between'
-  },
+export const ButtonsContainer = styled.View`
+  flex-direction: row;
+  margin-top: 40px;
+  justify-content: space-between;
+`
 
-  button: {
-    height: 150,
-    width: '48%',
-    backgroundColor: '#333',
-    borderRadius: 8,
-    padding: 24,
-    justifyContent: 'space-between'
-  },
+export const ButtonStudy = styled(RectButton)`
+  height: 150px;
+  width: 48%;
+  border-radius: 8px;
+  padding: 24px;
+  justify-content: space-between;
+  background: #9871f5;
+`
 
-  buttonPrimary: {
-    backgroundColor: '#9871f5'
-  },
+export const TextButton = styled.Text`
+  font-family: 'Archivo_700Bold';
+  color: #fff;
+  font-size: 20px;
+`
 
-  buttonSecondary: {
-    backgroundColor: '#04d361'
-  },
+export const ButtonTeacher = styled(RectButton)`
+  height: 150px;
+  width: 48%;
+  border-radius: 8px;
+  padding: 24px;
+  justify-content: space-between;
+  background: #04d361;
+`
 
-  buttonText: {
-    fontFamily: 'Archivo_700Bold',
-    color: '#FFF',
-    fontSize: 20
-  },
-
-  totalConnections: {
-    fontFamily: 'Poppins_400Regular',
-    color: '#d4c2ff',
-    fontSize: 12,
-    lineHeight: 20,
-    maxWidth: 140,
-    marginTop: 40
-  }
-})
-
-export default styles
+export const TotalConnections = styled.Text`
+  font-family: 'Poppins_400Regular';
+  color: #d4c2ff;
+  font-size: 12px;
+  line-height: 20px;
+  max-width: 150px;
+  margin-top: 40px;
+`

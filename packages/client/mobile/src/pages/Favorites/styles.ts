@@ -1,10 +1,17 @@
-import { StyleSheet } from 'react-native'
+import { ScrollView } from 'react-native'
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#f0f0f7'
+import styled from 'styled-components/native'
+
+export const Container = styled.View`
+  flex: 1;
+  background: #f0f0f7;
+`
+
+export const Scroll = styled(ScrollView).attrs({
+  contentContainerStyle: {
+    paddingHorizontal: 16,
+    paddingBottom: 16
   }
-})
-
-export default styles
+})`
+  margin-top: -40px;
+`

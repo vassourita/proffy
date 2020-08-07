@@ -20,5 +20,4 @@ const AppStack: React.FC = () => {
     </NavigationContainer>
   )
 }
-
 export default AppStack
