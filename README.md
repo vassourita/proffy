@@ -54,6 +54,7 @@ $ yarn
 $ cd ./docker
 $ docker-compose up -d
 # rename .env.example to .env and add your database credentials, then run migrations:
+$ cd ../
 $ yarn db:migrate
 # start the server
 $ yarn start:dev
@@ -62,14 +63,9 @@ $ yarn start:dev
 $ cd packages/client/web
 $ yarn
 $ yarn dev
+
+# open one more shell again on the repository root folder, install dependencies then start the expo server
+$ cd packages/client/mobile
+$ yarn
+$ yarn start
 ```
-- [Typescript](https://www.typescriptlang.org/)
-- [Docker](https://www.docker.com/)
-- [NextJS](https://nextjs.org/)
-- [Styled Components](https://styled-components.com/)
-- [ReactJS](https://reactjs.org/)
-- [React Native](https://reactnative.dev/)
-- [Expo](https://expo.io/)
-- [Express](https://expressjs.com/en/api.html#express)
-- [Jest](https://jestjs.io/)
-- [PostgreSQL](https://www.postgresql.org/)
